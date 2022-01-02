@@ -4,10 +4,11 @@ import (
   "time"
   "encoding/json"
   "context"
+
   "github.com/aws/aws-lambda-go/lambda"
   "github.com/aws/aws-lambda-go/events"
 
-	"github.com/sean-callahan/mcquery"
+  "github.com/sean-callahan/mcquery"
 )
 
 type Response struct {
@@ -27,10 +28,9 @@ func LambdaHandler(ctx context.Context, request events.APIGatewayProxyRequest) (
 		panic(err)
 	}
 
-  jsonString, err := json.Marshal(status)
-  // return Response{Message: string(jsonString)}, nil
+  statusJson, err := json.Marshal(status)
   return events.APIGatewayProxyResponse{
-    Body: string(jsonString), 
+    Body: string(statusJson), 
     StatusCode: 200, 
     Headers: map[string]string{"Content-Type": "application/json"},
   }, nil
