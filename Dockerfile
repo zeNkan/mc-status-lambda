@@ -3,7 +3,7 @@ FROM public.ecr.aws/lambda/provided:al2 as build
 RUN yum install -y golang
 RUN go env -w GOPROXY=direct
 # cache dependencies
-ADD src .
+ADD . .
 RUN go mod download
 # build
 RUN go build -o /main
